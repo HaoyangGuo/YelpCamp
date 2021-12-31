@@ -19,7 +19,7 @@ async function seedImg() {
 	try {
 		const resp = await axios.get("https://api.unsplash.com/photos/random", {
 			params: {
-				client_id: "faxoXz-Dj3Qe7Ebx2gW7vCS7pSk7Ug7zTawfTpHqZ_s",
+				client_id: "Dp0HMR-OVAMObwoR6-ygFYB5wQ9XSgDwlnxPy5xDvHg",
 				collections: 11389229,
 			},
 		});
@@ -29,14 +29,13 @@ async function seedImg() {
 	}
 }
 
-
 const sample = (array) => {
 	return array[Math.floor(Math.random() * array.length)];
 };
 
 const seedDB = async () => {
 	await Campground.deleteMany({});
-	for (let i = 0; i < 25; i++) {
+	for (let i = 0; i < 10; i++) {
 		const random1000 = Math.floor(Math.random() * 1000);
 		const price = Math.floor(Math.random() * 20) + 10;
 		const title = `${sample(descriptors)} ${sample(places)}`;
@@ -55,4 +54,3 @@ const seedDB = async () => {
 seedDB().then(() => {
 	mongoose.connection.close();
 });
-
