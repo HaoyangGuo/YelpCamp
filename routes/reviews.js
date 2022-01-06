@@ -6,7 +6,6 @@ const { reviewSchema } = require("../schemas.js");
 const { isLoggedIn, isReviewAuthor } = require("../middleware.js");
 
 const reviews = require("../controllers/review");
-const campground = require("../models/Campground");
 
 const validateReview = (req, res, next) => {
 	const { error } = reviewSchema.validate(req.body);

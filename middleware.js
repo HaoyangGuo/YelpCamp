@@ -4,7 +4,7 @@ const Review = require("./models/review");
 module.exports.isLoggedIn = (req, res, next) => {
 	if (!req.isAuthenticated()) {
 		req.session.returnTo = req.originalUrl;
-		req.flash("error", "You must be signed in to add new campground");
+		req.flash("error", "You don't have permission to do that!");
 		return res.redirect("/login");
 	}
 	next();
