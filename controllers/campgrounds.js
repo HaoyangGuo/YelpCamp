@@ -41,17 +41,23 @@ module.exports.renderEditForm = async (req, res, next) => {
 };
 
 module.exports.updateCampground = async (req, res, next) => {
+	console.log(req.body);
 	const { id } = req.params;
-	await Campground.findByIdAndUpdate(id, {
+	const campground = await Campground.findByIdAndUpdate(id, {
 		...req.body.campground,
 	});
-	const updatedCampground = await Campground.findById(id);
-	if (!updatedCampground) {
+	if (!campground) {
 		req.flash("error", "Campground doesn't exist");
 		return res.redirect("/campgrounds");
 	}
+	const imgs = req.files.map((f) => ({
+		url: f.path,
+		filename: f.filename,
+	}));
+	campground.images.push(...imgs);
+	await campground.save();
 	req.flash("success", "Successfully updated campground!");
-	res.render("campgrounds/show", { campground: updatedCampground });
+	res.render("campgrounds/show", { campground });
 };
 
 module.exports.deleteCampground = async (req, res, next) => {
