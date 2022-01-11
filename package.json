@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@mapbox/mapbox-sdk": "^0.13.2",
     "axios": "^0.24.0",
     "cloudinary": "^1.27.1",
     "connect-flash": "^0.1.1",
