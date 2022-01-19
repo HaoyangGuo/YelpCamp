@@ -20,21 +20,20 @@ const reviewRoutes = require("./routes/reviews");
 const userRoutes = require("./routes/users");
 const User = require("./models/user");
 
-const dbUrl = "mongodb://localhost:27017/yelp-camp";
-// process.env.DB_URL;
-//"mongodb://localhost:27017/yelp-camp"
+const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/yelp-camp";
+const secret = process.env.SECRET || "thisshouldbeabettersecret";
 
 const store = MongoStore.create({
-    mongoUrl: dbUrl,
-    touchAfter: 24 * 60 * 60,
-    crypto: {
-        secret: 'thisshouldbeabettersecret'
-    }
+	mongoUrl: dbUrl,
+	touchAfter: 24 * 60 * 60,
+	crypto: {
+		secret: "thisshouldbeabettersecret",
+	},
 });
 
-store.on("error", function(e){
-	console.log("SESSION STORE ERROR, e")
-})
+store.on("error", function (e) {
+	console.log("SESSION STORE ERROR, e");
+});
 
 const db = mongoose
 	.connect("mongodb://localhost:27017/yelp-camp")
