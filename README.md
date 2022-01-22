@@ -1,2 +1,2 @@
 # YelpCamp
-haoyangs-yelpcamp2022.herokuapp.com
+https://haoyangs-yelpcamp2022.herokuapp.com
